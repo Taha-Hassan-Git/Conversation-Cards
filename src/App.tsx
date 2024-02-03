@@ -114,6 +114,16 @@ function App() {
 export default App;
 
 function Card({ cards }: { cards: CardType[] }) {
+  if (cards.length === 0) {
+    return (
+      <div className="card">
+        <h1>No More Cards</h1>
+        <div className="question-area">
+          <p>Click the reset button to reset the deck</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="card">
       <h1>{cards[0].topic}</h1>
@@ -134,11 +144,9 @@ function Buttons({
   setCards: (cards: CardType[]) => void;
 }) {
   const handleDraw = () => {
-    setCards((prev) => {
-      const copy = [...prev];
-      copy.shift();
-      return copy;
-    });
+    const cardsCopy = [...cards];
+    cardsCopy.shift();
+    setCards(cardsCopy);
   };
   const handleShuffle = (cards: CardType[]) => {
     function shuffle(array: CardType[]) {
