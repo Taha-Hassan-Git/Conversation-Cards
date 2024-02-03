@@ -40,14 +40,14 @@ body{
 }
 
 .card {
-  height: 50%;
-  max-width: 50%;
+  max-height: 500px;
+  max-width: 300px;
+  aspect-ratio: 9/16;
   background-color: #333;
   border-radius: 10px;
   border: 1px solid #6c6c6ca8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%;
   display: flex;
   flex-direction: column;
 }

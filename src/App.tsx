@@ -95,11 +95,12 @@ function App() {
       question: "What was your least favorite subject at school? Why?",
     },
   ];
-  const [cards, setCards] = useState<CardType[]>(startingCards);
+  const [cards, setCards] = useState<CardType[]>(() => shuffle(startingCards));
 
   return (
     <main className="main">
       <div className="board">
+        <p>{cards.length} Cards Left</p>
         <Card cards={cards} />
       </div>
       <Buttons
@@ -149,13 +150,6 @@ function Buttons({
     setCards(cardsCopy);
   };
   const handleShuffle = (cards: CardType[]) => {
-    function shuffle(array: CardType[]) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
     const shuffled = shuffle([...cards]);
     setCards(shuffled);
   };
@@ -169,4 +163,12 @@ function Buttons({
       <button onClick={() => handleReset()}>Reset</button>
     </div>
   );
+}
+
+export function shuffle(array: CardType[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
