@@ -126,7 +126,7 @@ function Card({ cards }: { cards: CardType[] }) {
     );
   }
   return (
-    <div className="card">
+    <div className={"card " + `${cards[0].topic}`}>
       <h1>{cards[0].topic}</h1>
       <div className="question-area">
         <p>{cards[0].question}</p>
